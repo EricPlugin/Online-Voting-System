@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.UserDao">
+	<select id="getUser" parameterType="bean.User" resultType="bean.User">
+		SELECT * FROM user where username=#{username} and password=#{password}
+	</select>
+
+	<select id="doSelectUsername" parameterType="String" resultType="String">
+		SELECT user.username FROM user where username=#{username}
+	</select>
+
+	<insert id="insertUser" parameterType="bean.User">
+		INSERT INTO `online_voting_system`.`user` (`username`, `password`, `root`) VALUES (#{username}, #{password}, 1)
+	</insert>
+	<select id="getAllUsers" resultType="bean.User">
+		SELECT * FROM online_voting_system.user
+	</select>
+	<update id="resetPassword" parameterType="String">
+		UPDATE `online_voting_system`.`user`  SET password = '111' WHERE username =#{username}
+	</update>
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM `online_voting_system`.`user` WHERE username = #{username	}
+	</delete>
+</mapper>
