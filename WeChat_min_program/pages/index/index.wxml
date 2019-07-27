@@ -1,0 +1,23 @@
+<!--index.wxml-->
+<view class="container_player_1_name">
+    <text class="player_1_name">{{player_1_name}}</text>
+</view>
+<view class="container_player_1_button"   bindtap="add_player_1_vote">
+    <button>点击为TA投票</button>  
+</view>
+<view class="container_player_2_name">
+    <text class="player_2_name">{{player_2_name}}</text>
+</view>
+<view class="container_player_2_button"   bindtap="add_player_2_vote">
+    <button>点击为TA投票</button>  
+</view>
+<!-- <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>-->

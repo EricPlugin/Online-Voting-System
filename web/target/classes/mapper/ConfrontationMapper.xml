@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ConfrontationDao">
+    <insert id="insertConfrontation" parameterType="bean.Confrontation">
+       INSERT INTO `online_voting_system`.`confrontation` (`match_id`, `player_1_id`, `player_1_votes`, `player_2_id`, `player_2_votes`, `state`) VALUES (#{match_id}, #{player_1_id}, 0, #{player_2_id}, 0, 0)
+    </insert>
+    <select id="getAllConfrontation" resultType="bean.Confrontation">
+        SELECT * FROM online_voting_system.confrontation
+    </select>
+    <select id="getConfrontationCnd" resultType="bean.ConfrontationCnd">
+        select online_voting_system.confrontation.confrontation_id,online_voting_system.`match`.match_name,online_voting_system.player_1.player_name as player_1_name,online_voting_system.player_2.player_name as player_2_name
+        from online_voting_system.confrontation
+        left join online_voting_system.`match`
+          on confrontation.match_id=`match`.match_id
+        left join online_voting_system.player as player_1
+          on confrontation.player_1_id =player_1.player_id
+        left join online_voting_system.player as player_2
+          on confrontation.player_2_id =player_2.player_id
+    </select>
+    <update id="updateState" parameterType="int" >
+        UPDATE `online_voting_system`.`confrontation` t SET t.`state` = 1 WHERE t.`confrontation_id` = #{confrontation_id}
+    </update>
+    <update id="RE_updateState">
+        UPDATE `online_voting_system`.`confrontation` SET `state` = 0 where state = 1
+    </update>
+
+    <select id="getAllConfrontationByState" resultType="bean.ConfrontationCnd">
+        select online_voting_system.confrontation.*,online_voting_system.`match`.match_name,online_voting_system.player_1.player_name as player_1_name,online_voting_system.player_2.player_name as player_2_name
+        from online_voting_system.confrontation
+        left join online_voting_system.`match`
+          on confrontation.match_id=`match`.match_id
+        left join online_voting_system.player as player_1
+          on confrontation.player_1_id =player_1.player_id
+        left join online_voting_system.player as player_2
+          on confrontation.player_2_id =player_2.player_id
+where online_voting_system.confrontation.state = 1
+    </select>
+    <update id="addVoteForPlayer_1" parameterType="int">
+        update online_voting_system.confrontation set player_1_votes= player_1_votes+1 where confrontation_id=#{confrontation_id}
+    </update>
+    <update id="addVoteForPlayer_2" parameterType="int">
+        update online_voting_system.confrontation set player_2_votes= player_2_votes+1 where confrontation_id=#{confrontation_id}
+    </update>
+</mapper>

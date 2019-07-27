@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>在线投票系统后台管理界面</title>
+    <script src="scripts/jquery-3.3.1.min.js"></script>
+    <script src="scripts/echarts.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+</head>
+<body>
+    <img src="http://localhost:8080/OnlineVotingSystem_war/player_images/11.jpg" height="576" width="1024" class="back_img"/>
+    <div id="main" style="width: 1000px;height:600px;"></div>
+    <div class="player_1">
+        <img src="player_images/6544074082007B18FB480CE28B50A4B24E0E8C1B4.jpg" height="640"
+                               width="640"  class="img-circle player_img"/>
+        <h1>张三</h1>
+    </div>
+    <div class="player_2">
+        <img src="player_images/6544074082007B18FB480CE28B50A4B24E0E8C1B4.jpg" height="640"
+             width="640"  class="img-circle player_img"/>
+        <h1>张三</h1>
+    </div>
+    <script type="text/javascript">
+        function longLink(){
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('main'));
+                // 指定图表的配置项和数据
+                var option = {
+                    tooltip: {},
+                    xAxis: {
+                        data: ["", ""]
+                    },
+                    yAxis: {
+                        show: false
+                    },
+                    series: [{
+                        name: '票数',
+                        type: 'bar',
+                        data: [100, 100]
+                    }],
+                    animation: false
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+    }
+    longLink();
+
+    /*setTimeout(function(){
+        window.location.reload();//刷新当前页面.
+    },2000)
+});*/
+
+</script>
+</body>
+
+</html>
